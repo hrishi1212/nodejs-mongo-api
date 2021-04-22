@@ -1,5 +1,6 @@
 const GetirService = require("../services/getir.service");
 const { ValidationException } = require("../exceptions");
+const { isValidDate } = require("../helpers/helper");
 
 class GetirBiz {
   constructor() {
@@ -15,11 +16,11 @@ class GetirBiz {
     return new Promise(async (resolve, reject) => {
       try {
         //start date formate validation error, it should be always in YYYY-MM-DD format
-        if (!this.isValidDate(data.startDate))
+        if (!isValidDate(data.startDate))
           throw new ValidationException("startDate");
 
         //start date formate validation error, it should be always in YYYY-MM-DD format
-        if (!this.isValidDate(data.endDate))
+        if (!isValidDate(data.endDate))
           throw new ValidationException("endDate");
 
         //convert request body dates to javascript date object, using same variable for memory managenment
@@ -49,27 +50,6 @@ class GetirBiz {
         reject(error);
       }
     });
-  }
-
-  /**
-   * @author Hrishikesh Kale
-   * @description validates date string cases handle for epoch,
-   * leap day, not leap day and invalid date like 2020-02-30,
-   * this function can be in common or helper file also which can be use by other biz files
-   * @param {*} dateString
-   */
-  isValidDate(dateString) {
-    try {
-      const regEx = /^\d{4}-\d{2}-\d{2}$/;
-      if (!dateString.match(regEx)) return false; // Invalid format
-      const d = new Date(dateString);
-      const dNum = d.getTime();
-      if (!dNum && dNum !== 0) return false; // NaN value, Invalid date
-      return d.toISOString().slice(0, 10) === dateString;
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
   }
 }
 

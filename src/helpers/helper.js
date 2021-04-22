@@ -1,0 +1,19 @@
+/**
+ * @author Hrishikesh Kale
+ * @description validates date string cases handle for epoch,
+ * leap day, not leap day and invalid date like 2020-02-30,
+ * @param {*} dateString
+ */
+exports.isValidDate = (dateString) => {
+  try {
+    const regEx = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateString.match(regEx)) return false; // Invalid format
+    const d = new Date(dateString);
+    const dNum = d.getTime();
+    if (!dNum && dNum !== 0) return false; // NaN value, Invalid date
+    return d.toISOString().slice(0, 10) === dateString;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
