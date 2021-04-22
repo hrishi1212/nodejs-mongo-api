@@ -2,6 +2,19 @@
 
 Nodejs API Setup with firebase
 
+## AWS server url
+
+http://ec2-65-0-27-242.ap-south-1.compute.amazonaws.com:8005/api/getir
+
+## Post Request Body
+
+{
+"startDate": "2016-01-30",
+"endDate": "2018-02-02",
+"minCount": 3000,
+"maxCount": 5000
+}
+
 ## Requirements
 
 - Node
