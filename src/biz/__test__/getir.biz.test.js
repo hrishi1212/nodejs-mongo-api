@@ -1,5 +1,6 @@
 const expect = require("expect");
 const GetirBiz = require("../getir.biz");
+const { isValidDate } = require("../../helpers/helper");
 
 describe("Test Suit for Getir Biz param validation", () => {
   test("this return an array for succesfully fetching records", async () => {
@@ -25,8 +26,8 @@ describe("Test Suit for Getir Biz start date end date validation", () => {
     const data = {
       startDate: "2016-01-30",
     };
-    const getirBiz = new GetirBiz();
-    const result = await getirBiz.isValidDate(data.startDate);
+  
+    const result = isValidDate(data.startDate);
     expect(result).toBeTruthy();
   });
 
@@ -34,8 +35,8 @@ describe("Test Suit for Getir Biz start date end date validation", () => {
     const data = {
       startDate: "2016-02-30",
     };
-    const getirBiz = new GetirBiz();
-    const result = await getirBiz.isValidDate(data.startDate);
+
+    const result = isValidDate(data.startDate);
     expect(result).toBeFalsy();
   });
 });
