@@ -1,6 +1,6 @@
 # nodejs-mongo-api
 
-Nodejs API Setup with firebase
+Nodejs API Setup with MongoDb
 
 ## AWS server url
 
